@@ -128,7 +128,7 @@ There are two ways to add sample data to the database:
 5. To create a new article you can access the endpoint:
 `http://127.0.0.1:8000/api/articles/`, where you can create an article providing either Raw data (JSON input) or filling the fields in HTML form.
 
-**Important Note**: The backend is designed to have separated entities for Article, Tag, Comment and Author (User entity), so in order to successfully add the Authors and Tags fields, an author and a tag instance must already be created in advance. A new user can only be registered through the admin panel (**when creating user in the admin panel make sure you give theme superuser and staff status perimissions in order to be able to log in and change between users**), though it is reasonable to scale the functionality to register a new user through a login form (with the appropriate frontend)The tag creation is mentioned in step 4. Upon creation, the author is automatically set to be the user using POST operation **PLUS** whoever the user is picking as his co-author(can be nobody -- and the article author is just the user).
+**Important Note**: The backend is designed to have separated entities for Article, Tag, Comment and Author (User entity), so in order to successfully add the Authors and Tags fields, an author and a tag instance must already be created in advance. A new user can only be registered through the admin panel (**when creating user in the admin panel make sure you give theme superuser and staff status perimissions in order to be able to log in and change between users**), though it is reasonable to scale the functionality to register a new user through a login form (with the appropriate frontend). The tag creation is mentioned in step 4. Upon creation, the author is automatically set to be the user using POST operation **PLUS** whoever the user is picking as his co-author(can be nobody -- and the article author is just the user).
 After creation the backend is configured to return the full details for the author users instead of just the IDs.  
 Example input for article creation through Raw data input:
 
@@ -192,7 +192,7 @@ You can load predefined sample data using Django fixtures.
 **Importart**: To follow the user flow logic the fixtures must be inserted in order. 
 
 ### Prerequisite: 
-In order for the fixture (which are static data) to work correctly, you must have 3 users already created and given the superuser and staff status. The first is already created through the ```python manage.py createsuperuser``` command. The others can be created in the admin panel. 
+In order for the fixtures (which are static data) to work correctly, you must have 3 users already created and given the superuser and staff status. The first is already created through the ```python manage.py createsuperuser``` command. The others can be created in the admin panel. 
 
 **Important Note**: If you need to re-load the fixtures after already loading them, make sure there are the same 3 users you created from the start. If you deleted one user (e.g user1) and created another (e.g user4), the load will not work as it is not matching the sequence ID of the users. 
 
@@ -265,12 +265,21 @@ Visit the endpoint http://127.0.0.1:8000/api/articles/
 
 Clicking the Filters button it is possible to filter returned articles based on publication year, publication month, authors, tags or keyword searches such as title and abstract. 
 
+Else, you can use request query parameters to GET the filtered articles 
+
+For example:
+
+```
+http://127.0.0.1:8000/api/articles/?year=&month=&keywords=collection
+```
+returns articles that have the word collection in the title or in the abstract.
 
 
 ## Export CSV
 The export to CSV functionality can be accesses through the API in two ways:
 
-1. Through the endpoint: http://127.0.0.1:8000/articles/export_csv?year={year}&month={month}&tags={tags}&keywords={titleORabstract}.
+1. Through the endpoint: http://127.0.0.1:8000/articles/export_csv?year={year}&month={month}&tags={tags}&keywords={titleORabstract},
+where you can substitute the curly brackets with values (e.g keywords=collection).
 
 2. By pressing the export button in the DRF (Extra Actions --> Export csv) through the endpoint: http://127.0.0.1:8000/api/articles/.
 If not any filter parameters are passed, all articles are returned.
