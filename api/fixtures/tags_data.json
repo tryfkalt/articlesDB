@@ -1,0 +1,79 @@
+[
+    {
+        "model": "api.tag",
+        "pk": 1,
+        "fields": {
+            "name": "Cooking"
+        }
+    },
+    {
+        "model": "api.tag",
+        "pk": 2,
+        "fields": {
+            "name": "Sports"
+        }
+    },
+    {
+        "model": "api.tag",
+        "pk": 3,
+        "fields": {
+            "name": "Beef"
+        }
+    },
+    {
+        "model": "api.tag",
+        "pk": 4,
+        "fields": {
+            "name": "Steak"
+        }
+    },
+    {
+        "model": "api.tag",
+        "pk": 5,
+        "fields": {
+            "name": "Pasta"
+        }
+    },
+    {
+        "model": "api.tag",
+        "pk": 6,
+        "fields": {
+            "name": "Football"
+        }
+    },
+    {
+        "model": "api.tag",
+        "pk": 7,
+        "fields": {
+            "name": "Basketball"
+        }
+    },
+    {
+        "model": "api.tag",
+        "pk": 8,
+        "fields": {
+            "name": "NBA"
+        }
+    },
+    {
+        "model": "api.tag",
+        "pk": 9,
+        "fields": {
+            "name": "Tennis"
+        }
+    },
+    {
+        "model": "api.tag",
+        "pk": 10,
+        "fields": {
+            "name": "Music"
+        }
+    },
+    {
+        "model": "api.tag",
+        "pk": 11,
+        "fields": {
+            "name": "Rock"
+        }
+    }
+]

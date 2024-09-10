@@ -1,0 +1,35 @@
+[
+    {
+        "model": "api.article",
+        "pk": 1,
+        "fields": {
+            "title": "How to Cook Steak",
+            "abstract": "A guide to cooking the perfect steak",
+            "publication_date": "2024-09-01",  
+            "authors": [1],
+            "tags": [3, 4]
+        }
+    },
+    {
+        "model": "api.article",
+        "pk": 2,
+        "fields": {
+            "title": "Pasta Recipes",
+            "abstract": "A collection of pasta recipes",
+            "publication_date": "2024-09-02",  
+            "authors": [1, 2],
+            "tags": [5]
+        }
+    },
+    {
+        "model": "api.article",
+        "pk": 3,
+        "fields": {
+            "title": "NBA Finals",
+            "abstract": "A recap of the NBA Finals",
+            "publication_date": "2024-09-03", 
+            "authors": [2, 3],
+            "tags": [6, 7, 8]
+        }
+    }
+]
