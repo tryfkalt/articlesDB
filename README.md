@@ -32,7 +32,7 @@ This is a Django REST framework-based API for managing articles, comments, and t
 
     ```bash
     git clone https://github.com/tryfkalt/articlesDB.git
-    cd <repository-directory>
+    cd articlesDB
     ```
 
 2. Create and activate a Python virtual environment:
