@@ -54,19 +54,34 @@ This is a Django REST framework-based API for managing articles, comments, and t
 
     - Create a database in PostgreSQL (can be done through the pgAdmin4 DBMS as well):
 
+    On Linux, open a Terminal and run the commands:
+
         ```bash
+        sudo -i -u postgres
         psql -U postgres
         CREATE DATABASE articlesDB;
-        CREATE USER postgres WITH PASSWORD '123456';
+        CREATE USER postgres WITH PASSWORD 'postgres';
         GRANT ALL PRIVILEGES ON DATABASE articlesDB TO postgres;
         ```
-
-5. Apply the migrations to set up the database schema:
+5. In your settings.py file you should have be matching database configurations (typically should be stored in an .env file but for now you can use these):
+    ```
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'articlesDB',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'localhost',
+            # 'PORT': '5432',
+        }
+    }
+    ```
+6. Apply the migrations to set up the database schema:
 
     ```bash
     python manage.py migrate
     ```
-6. **Note**: For easy data management and representation i used pgAdmin4 as my DBMS. 
+7. **Note**: For easy data management and representation i used pgAdmin4 as my DBMS. 
 
 ---
 
@@ -200,6 +215,15 @@ To migrate the data to the database run the command:
 python manage.py migrate
 ```
 Now running the api, or in the DBMS pgAdmin4 you can see that the database is populated with the data.
+
+**IF FOR SOME REASON YOU RECEIVE AN ERROR LIKE THE FOLLOWING, CLEAR GOOGLE CHROME COOKIES**
+```
+{
+    "detail": "CSRF Failed: CSRF token missing."
+}
+```
+
+
 
 ---
 
