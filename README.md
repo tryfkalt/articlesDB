@@ -31,7 +31,7 @@ This is a Django REST framework-based API for managing articles, comments, and t
 1. Clone the repository:
 
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/tryfkalt/articlesDB.git
     cd <repository-directory>
     ```
 
