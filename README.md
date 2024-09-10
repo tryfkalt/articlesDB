@@ -128,7 +128,7 @@ There are two ways to add sample data to the database:
 5. To create a new article you can access the endpoint:
 `http://127.0.0.1:8000/api/articles/`, where you can create an article providing either Raw data (JSON input) or filling the fields in HTML form.
 
-**Important Note**: The backend is designed to have separated entities for Article, Tag, Comment and Author (User entity), so in order to successfully add the Authors and Tags fields, an author and a tag instance must already be created in advance. A new user can only be registered through the admin panel (when creating user in the admin panel make sure you give theme superuser and staff status perimissions in order to be able to log in and change between users), though it is reasonable to scale the functionality to register a new user through a login form (with the appropriate frontend)The tag creation is mentioned in step 4. Upon creation, the author is automatically set to be the user using POST operation **PLUS** whoever the user is picking as his co-author(can be nobody -- and the article author is just the user).
+**Important Note**: The backend is designed to have separated entities for Article, Tag, Comment and Author (User entity), so in order to successfully add the Authors and Tags fields, an author and a tag instance must already be created in advance. A new user can only be registered through the admin panel (**when creating user in the admin panel make sure you give theme superuser and staff status perimissions in order to be able to log in and change between users**), though it is reasonable to scale the functionality to register a new user through a login form (with the appropriate frontend)The tag creation is mentioned in step 4. Upon creation, the author is automatically set to be the user using POST operation **PLUS** whoever the user is picking as his co-author(can be nobody -- and the article author is just the user).
 After creation the backend is configured to return the full details for the author users instead of just the IDs.  
 Example input for article creation through Raw data input:
 
@@ -191,6 +191,18 @@ You can load predefined sample data using Django fixtures.
 
 **Importart**: To follow the user flow logic the fixtures must be inserted in order. 
 
+### Prerequisite: 
+In order for the fixture (which are static data) to work correctly, you must have 3 users already created and given the superuser and staff status. The first is already created through the ```python manage.py createsuperuser``` command. The others can be created in the admin panel. 
+
+**Important Note**: If you need to re-load the fixtures after already loading them, make sure there are the same 3 users you created from the start. If you deleted one user (e.g user1) and created another (e.g user4), the load will not work as it is not matching the sequence ID of the users. 
+
+In order to load the fixtures again you must delete all users, and then run the custom script:
+```
+python manage.py reset_user_sequence
+```
+to reset user IDs to 1. Then you can create 2 more users again and load the fixtures correctly.
+
+
 #### a. First load the tags data using the command:
 
 ```bash
@@ -222,10 +234,8 @@ Now running the api, or in the DBMS pgAdmin4 you can see that the database is po
     "detail": "CSRF Failed: CSRF token missing."
 }
 ```
-
-
-
 ---
+
 
 ## Running the API
 
