@@ -109,23 +109,32 @@ There are two ways to add sample data to the database:
 
 ### 2. Using Django Rest Framework (DRF) 
 
-1. Start the server using the command:
+1. **Create a superuser**:
+
+    ```bash
+    python manage.py createsuperuser
+    ```
+After creating the superuser, login at:
+    ```
+    http://127.0.0.1:8000/admin/login/?next=/admin/login``` to be able to perform actions to the api. 
+
+2. Start the server using the command:
 
     ```bash
     python manage.py runserver
     ```
 
-2. The API will be available at `http://127.0.0.1:8000/`.
+3. The API will be available at `http://127.0.0.1:8000/`.
 
-3. The following endpoints are available:
+4. The following endpoints are available:
    - `/api/articles/` – View, create, and manage articles.
    - `/api/tags/` – Manage tags.
    - `/api/comments/` – Manage comments.
    - `/api/articles/export_csv/` – Export articles as a CSV file.
 
-4. To create a Tag you can access the endpoint:
+5. To create a Tag you can access the endpoint:
 `http://127.0.0.1:8000/api/tags/` , where you can POST a new tag through Raw data input or in HTML form, providing the name (e.g "Cooking"). After POST, the Tag will obtain a unique id.
-5. To create a new article you can access the endpoint:
+6. To create a new article you can access the endpoint:
 `http://127.0.0.1:8000/api/articles/`, where you can create an article providing either Raw data (JSON input) or filling the fields in HTML form.
 
 **Important Note**: The backend is designed to have separated entities for Article, Tag, Comment and Author (User entity), so in order to successfully add the Authors and Tags fields, an author and a tag instance must already be created in advance. A new user can only be registered through the admin panel (**when creating user in the admin panel make sure you give theme superuser and staff status perimissions in order to be able to log in and change between users**), though it is reasonable to scale the functionality to register a new user through a login form (with the appropriate frontend). The tag creation is mentioned in step 4. Upon creation, the author is automatically set to be the user using POST operation **PLUS** whoever the user is picking as his co-author(can be nobody -- and the article author is just the user).
@@ -177,7 +186,7 @@ Example response after POST:
 ```
 **Note**: User details such as first_name and email can be modified in the admin panel.
 
-6. To create a Tag you can access the endpoint:
+7. To create a Tag you can access the endpoint:
 `http://127.0.0.1:8000/api/comments/`, where you can either add a comment through Raw data input or in HTML form. For the HTML form, you can select one article from the dropdown window that contains the available articles.Also there is a Content field to add the comment. Example input for Raw data:
 ```
 {
@@ -202,6 +211,10 @@ python manage.py reset_user_sequence
 ```
 to reset user IDs to 1. Then you can create 2 more users again and load the fixtures correctly.
 
+Same rule applies to tags, so to restart the tag sequence, after deleting all tags, run the script:
+```
+python manage.py reset_tag_sequence
+```
 
 #### a. First load the tags data using the command:
 
