@@ -59,16 +59,16 @@ This is a Django REST framework-based API for managing articles, comments, and t
         ```bash
         sudo -i -u postgres
         psql -U postgres
-        CREATE DATABASE articlesDB;
+        CREATE DATABASE articlesdb;
         CREATE USER postgres WITH PASSWORD 'postgres';
-        GRANT ALL PRIVILEGES ON DATABASE articlesDB TO postgres;
+        GRANT ALL PRIVILEGES ON DATABASE articlesdb TO postgres;
         ```
 5. In your settings.py file you should have be matching database configurations (typically should be stored in an .env file but for now you can use these):
     ```
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'articlesDB',
+            'NAME': 'articlesdb',
             'USER': 'postgres',
             'PASSWORD': 'postgres',
             'HOST': 'localhost',
